@@ -15,7 +15,6 @@ type CommentListLogic struct {
 	svcCtx *svc.ServiceContext
 }
 
-// 民宿评论列表
 func NewCommentListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *CommentListLogic {
 	return &CommentListLogic{
 		Logger: logx.WithContext(ctx),

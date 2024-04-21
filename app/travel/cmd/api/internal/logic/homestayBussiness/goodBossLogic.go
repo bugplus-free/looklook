@@ -5,13 +5,8 @@ import (
 
 	"looklook/app/travel/cmd/api/internal/svc"
 	"looklook/app/travel/cmd/api/internal/types"
-	"looklook/app/usercenter/cmd/rpc/usercenter"
 
-	"github.com/Masterminds/squirrel"
-	"github.com/jinzhu/copier"
-	"github.com/pkg/errors"
 	"github.com/zeromicro/go-zero/core/logx"
-	"github.com/zeromicro/go-zero/core/mr"
 )
 
 type GoodBossLogic struct {
@@ -20,7 +15,6 @@ type GoodBossLogic struct {
 	svcCtx *svc.ServiceContext
 }
 
-// 最佳房东
 func NewGoodBossLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GoodBossLogic {
 	return &GoodBossLogic{
 		Logger: logx.WithContext(ctx),
@@ -29,8 +23,7 @@ func NewGoodBossLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GoodBoss
 	}
 }
 
-func (l *GoodBossLogic) GoodBoss(req *types.GoodBossReq) (*types.GoodBossResp, error) {
-	// todo: add your logic here and delete this line
+func (l *GoodBossLogic) GoodBoss(req *types.GoodBossReq) (resp *types.GoodBossResp, err error) {
 	whereBuilder := l.svcCtx.HomestayActivityModel.SelectBuilder().Where(squirrel.Eq{
 		"row_type":   model.HomestayActivityGoodBusiType,
 		"row_status": model.HomestayActivityUpStatus,

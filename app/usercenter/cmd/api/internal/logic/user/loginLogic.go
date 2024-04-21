@@ -5,9 +5,7 @@ import (
 
 	"looklook/app/usercenter/cmd/api/internal/svc"
 	"looklook/app/usercenter/cmd/api/internal/types"
-	"looklook/app/usercenter/cmd/rpc/usercenter"
 
-	"github.com/jinzhu/copier"
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -17,7 +15,6 @@ type LoginLogic struct {
 	svcCtx *svc.ServiceContext
 }
 
-// login
 func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginLogic {
 	return &LoginLogic{
 		Logger: logx.WithContext(ctx),
@@ -26,8 +23,7 @@ func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginLogic 
 	}
 }
 
-func (l *LoginLogic) Login(req *types.LoginReq) (*types.LoginResp, error) {
-	// todo: add your logic here and delete this line
+func (l *LoginLogic) Login(req *types.LoginReq) (resp *types.LoginResp, err error) {
 	loginResp, err := l.svcCtx.UsercenterRpc.Login(l.ctx, &usercenter.LoginReq{
 		AuthType: model.UserAuthTypeSystem,
 		AuthKey:  req.Mobile,

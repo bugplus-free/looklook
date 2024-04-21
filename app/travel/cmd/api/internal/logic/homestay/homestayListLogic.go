@@ -6,11 +6,7 @@ import (
 	"looklook/app/travel/cmd/api/internal/svc"
 	"looklook/app/travel/cmd/api/internal/types"
 
-	"github.com/Masterminds/squirrel"
-	"github.com/jinzhu/copier"
-	"github.com/pkg/errors"
 	"github.com/zeromicro/go-zero/core/logx"
-	"github.com/zeromicro/go-zero/core/mr"
 )
 
 type HomestayListLogic struct {
@@ -19,7 +15,6 @@ type HomestayListLogic struct {
 	svcCtx *svc.ServiceContext
 }
 
-// 民宿列表（为你优选）
 func NewHomestayListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *HomestayListLogic {
 	return &HomestayListLogic{
 		Logger: logx.WithContext(ctx),
@@ -28,8 +23,7 @@ func NewHomestayListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Home
 	}
 }
 
-func (l *HomestayListLogic) HomestayList(req *types.HomestayListReq) (*types.HomestayListResp, error) {
-	// todo: add your logic here and delete this line
+func (l *HomestayListLogic) HomestayList(req *types.HomestayListReq) (resp *types.HomestayListResp, err error) {
 	whereBuilder := l.svcCtx.HomestayActivityModel.SelectBuilder().Where(squirrel.Eq{
 		"row_type":   model.HomestayActivityPreferredType,
 		"row_status": model.HomestayActivityUpStatus,

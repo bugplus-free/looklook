@@ -8,6 +8,7 @@ import (
 
 	"looklook/app/order/cmd/rpc/internal/svc"
 	"looklook/app/order/cmd/rpc/pb"
+	"looklook/app/travel/cmd/rpc/travel"
 
 	"github.com/hibiken/asynq"
 	"github.com/pkg/errors"

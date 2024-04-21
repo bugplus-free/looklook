@@ -6,8 +6,6 @@ import (
 	"looklook/app/travel/cmd/api/internal/svc"
 	"looklook/app/travel/cmd/api/internal/types"
 
-	"github.com/jinzhu/copier"
-	"github.com/pkg/errors"
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -17,7 +15,6 @@ type HomestayDetailLogic struct {
 	svcCtx *svc.ServiceContext
 }
 
-// 民宿详情
 func NewHomestayDetailLogic(ctx context.Context, svcCtx *svc.ServiceContext) *HomestayDetailLogic {
 	return &HomestayDetailLogic{
 		Logger: logx.WithContext(ctx),
@@ -27,7 +24,6 @@ func NewHomestayDetailLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Ho
 }
 
 func (l *HomestayDetailLogic) HomestayDetail(req *types.HomestayDetailReq) (resp *types.HomestayDetailResp, err error) {
-	// todo: add your logic here and delete this line
 	homestayResp, err := l.svcCtx.TravelRpc.HomestayDetail(l.ctx, &travel.HomestayDetailReq{
 		Id: req.Id,
 	})

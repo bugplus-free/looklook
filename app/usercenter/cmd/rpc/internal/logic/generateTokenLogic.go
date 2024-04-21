@@ -2,13 +2,10 @@ package logic
 
 import (
 	"context"
-	"time"
 
 	"looklook/app/usercenter/cmd/rpc/internal/svc"
 	"looklook/app/usercenter/cmd/rpc/pb"
 
-	"github.com/golang-jwt/jwt"
-	"github.com/pkg/errors"
 	"github.com/zeromicro/go-zero/core/logx"
 )
 

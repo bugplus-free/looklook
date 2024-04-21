@@ -5,12 +5,8 @@ import (
 
 	"looklook/app/usercenter/cmd/rpc/internal/svc"
 	"looklook/app/usercenter/cmd/rpc/pb"
-	"looklook/app/usercenter/cmd/rpc/usercenter"
 
-	"github.com/jinzhu/copier"
-	"github.com/pkg/errors"
 	"github.com/zeromicro/go-zero/core/logx"
-	"github.com/zeromicro/go-zero/tools/goctl/model/sql/test/model"
 )
 
 type GetUserInfoLogic struct {
@@ -28,8 +24,7 @@ func NewGetUserInfoLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GetUs
 }
 
 func (l *GetUserInfoLogic) GetUserInfo(in *pb.GetUserInfoReq) (*pb.GetUserInfoResp, error) {
-	// todo: add your logic here and delete this line
-	user, err := l.svcCtx.UserModel.FindOne(l.ctx, in.Id)
+		user, err := l.svcCtx.UserModel.FindOne(l.ctx,in.Id)
 	if err != nil && err != model.ErrNotFound {
 		return nil, errors.Wrapf(xerr.NewErrCode(xerr.DB_ERROR), "GetUserInfo find user db err , id:%d , err:%v", in.Id, err)
 	}

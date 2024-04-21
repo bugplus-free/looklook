@@ -2,15 +2,10 @@ package user
 
 import (
 	"context"
-	"fmt"
 
 	"looklook/app/usercenter/cmd/api/internal/svc"
 	"looklook/app/usercenter/cmd/api/internal/types"
-	"looklook/app/usercenter/cmd/rpc/usercenter"
 
-	"github.com/pkg/errors"
-	"github.com/silenceper/wechat/v2"
-	"github.com/silenceper/wechat/v2/cache"
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -20,7 +15,6 @@ type WxMiniAuthLogic struct {
 	svcCtx *svc.ServiceContext
 }
 
-// wechat mini auth
 func NewWxMiniAuthLogic(ctx context.Context, svcCtx *svc.ServiceContext) *WxMiniAuthLogic {
 	return &WxMiniAuthLogic{
 		Logger: logx.WithContext(ctx),
@@ -29,8 +23,7 @@ func NewWxMiniAuthLogic(ctx context.Context, svcCtx *svc.ServiceContext) *WxMini
 	}
 }
 
-// Wechat-Mini auth
-func (l *WxMiniAuthLogic) WxMiniAuth(req types.WXMiniAuthReq) (*types.WXMiniAuthResp, error) {
+func (l *WxMiniAuthLogic) WxMiniAuth(req *types.WXMiniAuthReq) (resp *types.WXMiniAuthResp, err error) {
 
 	//1、Wechat-Mini
 	miniprogram := wechat.NewWechat().GetMiniProgram(&miniConfig.Config{

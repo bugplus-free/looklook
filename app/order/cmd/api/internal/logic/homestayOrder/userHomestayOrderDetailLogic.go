@@ -5,6 +5,9 @@ import (
 
 	"looklook/app/order/cmd/api/internal/svc"
 	"looklook/app/order/cmd/api/internal/types"
+	"looklook/app/order/cmd/rpc/order"
+	"looklook/app/payment/cmd/rpc/payment"
+	"looklook/common/ctxdata"
 
 	"github.com/jinzhu/copier"
 	"github.com/pkg/errors"
@@ -17,7 +20,6 @@ type UserHomestayOrderDetailLogic struct {
 	svcCtx *svc.ServiceContext
 }
 
-// 用户订单明细
 func NewUserHomestayOrderDetailLogic(ctx context.Context, svcCtx *svc.ServiceContext) *UserHomestayOrderDetailLogic {
 	return &UserHomestayOrderDetailLogic{
 		Logger: logx.WithContext(ctx),
@@ -26,8 +28,9 @@ func NewUserHomestayOrderDetailLogic(ctx context.Context, svcCtx *svc.ServiceCon
 	}
 }
 
-func (l *UserHomestayOrderDetailLogic) UserHomestayOrderDetail(req *types.UserHomestayOrderDetailReq) (*types.UserHomestayOrderDetailResp, error) {
+func (l *UserHomestayOrderDetailLogic) UserHomestayOrderDetail(req *types.UserHomestayOrderDetailReq) (resp *types.UserHomestayOrderDetailResp, err error) {
 	// todo: add your logic here and delete this line
+
 	userId := ctxdata.GetUidFromCtx(l.ctx)
 
 	resp, err := l.svcCtx.OrderRpc.HomestayOrderDetail(l.ctx, &order.HomestayOrderDetailReq{

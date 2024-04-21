@@ -6,11 +6,6 @@ import (
 	"looklook/app/payment/cmd/api/internal/svc"
 	"looklook/app/payment/cmd/api/internal/types"
 
-	"github.com/pkg/errors"
-	"github.com/wechatpay-apiv3/wechatpay-go/core/auth/verifiers"
-	"github.com/wechatpay-apiv3/wechatpay-go/core/downloader"
-	"github.com/wechatpay-apiv3/wechatpay-go/core/notify"
-	"github.com/wechatpay-apiv3/wechatpay-go/services/payments"
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -20,7 +15,6 @@ type ThirdPaymentWxPayCallbackLogic struct {
 	svcCtx *svc.ServiceContext
 }
 
-// third payment：wechat pay callback
 func NewThirdPaymentWxPayCallbackLogic(ctx context.Context, svcCtx *svc.ServiceContext) *ThirdPaymentWxPayCallbackLogic {
 	return &ThirdPaymentWxPayCallbackLogic{
 		Logger: logx.WithContext(ctx),
@@ -30,8 +24,31 @@ func NewThirdPaymentWxPayCallbackLogic(ctx context.Context, svcCtx *svc.ServiceC
 }
 
 func (l *ThirdPaymentWxPayCallbackLogic) ThirdPaymentWxPayCallback(req *types.ThirdPaymentWxPayCallbackReq) (resp *types.ThirdPaymentWxPayCallbackResp, err error) {
-	// todo: add your logic here and delete this line
 	//Retrieve the local merchant certificate private key.
+	_, err := svc.NewWxPayClientV3(l.svcCtx.Config)
+	if err != nil {
+		return nil, err
+	}
+
+	// Get platform certificate accessor
+	certVisitor := downloader.MgrInstance().GetCertificateVisitor(l.svcCtx.Config.WxPayConf.MchId)
+	handler := notify.NewNotifyHandler(l.svcCtx.Config.WxPayConf.APIv3Key, verifiers.NewSHA256WithRSAVerifier(certVisitor))
+	//Verifying signatures, parsing data
+	transaction := new(payments.Transaction)
+	_, err = handler.ParseNotifyRequest(context.Background(), req, transaction)
+	if err != nil {
+		return nil, errors.Wrapf(ErrWxPayCallbackError, "Failed to parse data ,err:%v", err)
+	}
+
+	returnCode := "SUCCESS"
+	err = l.verifyAndUpdateState(transaction)
+	if err != nil {
+		returnCode = "FAIL"
+	}
+
+	return &types.ThirdPaymentWxPayCallbackResp{
+		ReturnCode: returnCode,
+	}, err	//Retrieve the local merchant certificate private key.
 	_, err := svc.NewWxPayClientV3(l.svcCtx.Config)
 	if err != nil {
 		return nil, err
@@ -58,6 +75,8 @@ func (l *ThirdPaymentWxPayCallbackLogic) ThirdPaymentWxPayCallback(req *types.Th
 	}, err
 }
 
+
+//Verify and update relevant flow data
 func (l *ThirdPaymentWxPayCallbackLogic) verifyAndUpdateState(notifyTrasaction *payments.Transaction) error {
 
 	paymentResp, err := l.svcCtx.PaymentRpc.GetPaymentBySn(l.ctx, &payment.GetPaymentBySnReq{

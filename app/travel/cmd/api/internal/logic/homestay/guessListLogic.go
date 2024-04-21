@@ -6,8 +6,6 @@ import (
 	"looklook/app/travel/cmd/api/internal/svc"
 	"looklook/app/travel/cmd/api/internal/types"
 
-	"github.com/jinzhu/copier"
-	"github.com/pkg/errors"
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -17,7 +15,6 @@ type GuessListLogic struct {
 	svcCtx *svc.ServiceContext
 }
 
-// 猜你喜欢民宿列表
 func NewGuessListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GuessListLogic {
 	return &GuessListLogic{
 		Logger: logx.WithContext(ctx),
@@ -26,8 +23,7 @@ func NewGuessListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GuessLi
 	}
 }
 
-func (l *GuessListLogic) GuessList(req *types.GuessListReq) (*types.GuessListResp, error) {
-	// todo: add your logic here and delete this line
+func (l *GuessListLogic) GuessList(req *types.GuessListReq) (resp *types.GuessListResp, err error) {
 	var resp []types.Homestay
 
 	list, err := l.svcCtx.HomestayModel.FindPageListByIdDESC(l.ctx, l.svcCtx.HomestayModel.SelectBuilder(), 0, 5)

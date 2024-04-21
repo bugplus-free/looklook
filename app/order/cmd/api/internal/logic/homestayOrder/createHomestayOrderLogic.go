@@ -5,6 +5,9 @@ import (
 
 	"looklook/app/order/cmd/api/internal/svc"
 	"looklook/app/order/cmd/api/internal/types"
+	"looklook/app/order/cmd/rpc/order"
+	"looklook/app/travel/cmd/rpc/pb"
+	"looklook/common/ctxdata"
 
 	"github.com/pkg/errors"
 	"github.com/zeromicro/go-zero/core/logx"
@@ -16,7 +19,6 @@ type CreateHomestayOrderLogic struct {
 	svcCtx *svc.ServiceContext
 }
 
-// 创建民宿订单
 func NewCreateHomestayOrderLogic(ctx context.Context, svcCtx *svc.ServiceContext) *CreateHomestayOrderLogic {
 	return &CreateHomestayOrderLogic{
 		Logger: logx.WithContext(ctx),
