@@ -1,0 +1,34 @@
+syntax = "v1"
+
+info (
+	title:   "旅游服务"
+	desc:    "旅游服务"
+	author:  "goeer"
+	email:   "3480340468@qq.com"
+	version: "v1"
+)
+
+import (
+	"order/order.api"
+)
+
+//--------------------需要鉴权-------------------------
+@server (
+	prefix: order/v1
+	group:  homestayOrder
+	jwt:    JwtAuth
+)
+service order {
+	@doc "创建民宿订单"
+	@handler createHomestayOrder
+	post /homestayOrder/createHomestayOrder (CreateHomestayOrderReq) returns (CreateHomestayOrderResp)
+
+	@doc "用户订单列表"
+	@handler userHomestayOrderList
+	post /homestayOrder/userHomestayOrderList (UserHomestayOrderListReq) returns (UserHomestayOrderListResp)
+
+	@doc "用户订单明细"
+	@handler userHomestayOrderDetail
+	post /homestayOrder/userHomestayOrderDetail (UserHomestayOrderDetailReq) returns (UserHomestayOrderDetailResp)
+}
+
