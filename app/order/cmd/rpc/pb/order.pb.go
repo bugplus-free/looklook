@@ -25,33 +25,33 @@ type HomestayOrder struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id                  int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
-	Sn                  string `protobuf:"bytes,2,opt,name=sn,proto3" json:"sn"`
-	UserId              int64  `protobuf:"varint,3,opt,name=userId,proto3" json:"userId"`
-	HomestayId          int64  `protobuf:"varint,4,opt,name=homestayId,proto3" json:"homestayId"`
-	Title               string `protobuf:"bytes,5,opt,name=title,proto3" json:"title"`
-	SubTitle            string `protobuf:"bytes,6,opt,name=subTitle,proto3" json:"subTitle"`
-	Cover               string `protobuf:"bytes,7,opt,name=cover,proto3" json:"cover"`
-	Info                string `protobuf:"bytes,8,opt,name=info,proto3" json:"info"`
-	PeopleNum           int64  `protobuf:"varint,9,opt,name=peopleNum,proto3" json:"peopleNum"`
-	RowType             int64  `protobuf:"varint,10,opt,name=rowType,proto3" json:"rowType"`
-	FoodInfo            string `protobuf:"bytes,11,opt,name=foodInfo,proto3" json:"foodInfo"`
-	FoodPrice           int64  `protobuf:"varint,12,opt,name=foodPrice,proto3" json:"foodPrice"`
-	HomestayPrice       int64  `protobuf:"varint,13,opt,name=homestayPrice,proto3" json:"homestayPrice"`
-	MarketHomestayPrice int64  `protobuf:"varint,14,opt,name=marketHomestayPrice,proto3" json:"marketHomestayPrice"`
-	HomestayBusinessId  int64  `protobuf:"varint,15,opt,name=homestayBusinessId,proto3" json:"homestayBusinessId"`
-	HomestayUserId      int64  `protobuf:"varint,16,opt,name=homestayUserId,proto3" json:"homestayUserId"`
-	LiveStartDate       int64  `protobuf:"varint,17,opt,name=liveStartDate,proto3" json:"liveStartDate"`
-	LiveEndDate         int64  `protobuf:"varint,18,opt,name=liveEndDate,proto3" json:"liveEndDate"`
-	LivePeopleNum       int64  `protobuf:"varint,19,opt,name=livePeopleNum,proto3" json:"livePeopleNum"`
-	TradeState          int64  `protobuf:"varint,20,opt,name=tradeState,proto3" json:"tradeState"`
-	TradeCode           string `protobuf:"bytes,21,opt,name=tradeCode,proto3" json:"tradeCode"`
-	Remark              string `protobuf:"bytes,22,opt,name=remark,proto3" json:"remark"`
-	OrderTotalPrice     int64  `protobuf:"varint,23,opt,name=orderTotalPrice,proto3" json:"orderTotalPrice"`
-	FoodTotalPrice      int64  `protobuf:"varint,24,opt,name=foodTotalPrice,proto3" json:"foodTotalPrice"`
-	HomestayTotalPrice  int64  `protobuf:"varint,25,opt,name=homestayTotalPrice,proto3" json:"homestayTotalPrice"`
-	CreateTime          int64  `protobuf:"varint,26,opt,name=createTime,proto3" json:"createTime"`
-	NeedFood            int64  `protobuf:"varint,27,opt,name=needFood,proto3" json:"needFood"`
+	Id                  int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Sn                  string `protobuf:"bytes,2,opt,name=sn,proto3" json:"sn,omitempty"`
+	UserId              int64  `protobuf:"varint,3,opt,name=userId,proto3" json:"userId,omitempty"`
+	HomestayId          int64  `protobuf:"varint,4,opt,name=homestayId,proto3" json:"homestayId,omitempty"`
+	Title               string `protobuf:"bytes,5,opt,name=title,proto3" json:"title,omitempty"`
+	SubTitle            string `protobuf:"bytes,6,opt,name=subTitle,proto3" json:"subTitle,omitempty"`
+	Cover               string `protobuf:"bytes,7,opt,name=cover,proto3" json:"cover,omitempty"`
+	Info                string `protobuf:"bytes,8,opt,name=info,proto3" json:"info,omitempty"`
+	PeopleNum           int64  `protobuf:"varint,9,opt,name=peopleNum,proto3" json:"peopleNum,omitempty"`
+	RowType             int64  `protobuf:"varint,10,opt,name=rowType,proto3" json:"rowType,omitempty"`
+	FoodInfo            string `protobuf:"bytes,11,opt,name=foodInfo,proto3" json:"foodInfo,omitempty"`
+	FoodPrice           int64  `protobuf:"varint,12,opt,name=foodPrice,proto3" json:"foodPrice,omitempty"`
+	HomestayPrice       int64  `protobuf:"varint,13,opt,name=homestayPrice,proto3" json:"homestayPrice,omitempty"`
+	MarketHomestayPrice int64  `protobuf:"varint,14,opt,name=marketHomestayPrice,proto3" json:"marketHomestayPrice,omitempty"`
+	HomestayBusinessId  int64  `protobuf:"varint,15,opt,name=homestayBusinessId,proto3" json:"homestayBusinessId,omitempty"`
+	HomestayUserId      int64  `protobuf:"varint,16,opt,name=homestayUserId,proto3" json:"homestayUserId,omitempty"`
+	LiveStartDate       int64  `protobuf:"varint,17,opt,name=liveStartDate,proto3" json:"liveStartDate,omitempty"`
+	LiveEndDate         int64  `protobuf:"varint,18,opt,name=liveEndDate,proto3" json:"liveEndDate,omitempty"`
+	LivePeopleNum       int64  `protobuf:"varint,19,opt,name=livePeopleNum,proto3" json:"livePeopleNum,omitempty"`
+	TradeState          int64  `protobuf:"varint,20,opt,name=tradeState,proto3" json:"tradeState,omitempty"`
+	TradeCode           string `protobuf:"bytes,21,opt,name=tradeCode,proto3" json:"tradeCode,omitempty"`
+	Remark              string `protobuf:"bytes,22,opt,name=remark,proto3" json:"remark,omitempty"`
+	OrderTotalPrice     int64  `protobuf:"varint,23,opt,name=orderTotalPrice,proto3" json:"orderTotalPrice,omitempty"`
+	FoodTotalPrice      int64  `protobuf:"varint,24,opt,name=foodTotalPrice,proto3" json:"foodTotalPrice,omitempty"`
+	HomestayTotalPrice  int64  `protobuf:"varint,25,opt,name=homestayTotalPrice,proto3" json:"homestayTotalPrice,omitempty"`
+	CreateTime          int64  `protobuf:"varint,26,opt,name=createTime,proto3" json:"createTime,omitempty"`
+	NeedFood            int64  `protobuf:"varint,27,opt,name=needFood,proto3" json:"needFood,omitempty"`
 }
 
 func (x *HomestayOrder) Reset() {
@@ -280,13 +280,13 @@ type CreateHomestayOrderReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	HomestayId    int64  `protobuf:"varint,1,opt,name=homestayId,proto3" json:"homestayId"`
-	IsFood        bool   `protobuf:"varint,2,opt,name=isFood,proto3" json:"isFood"`
-	LiveStartTime int64  `protobuf:"varint,3,opt,name=liveStartTime,proto3" json:"liveStartTime"`
-	LiveEndTime   int64  `protobuf:"varint,4,opt,name=liveEndTime,proto3" json:"liveEndTime"`
-	UserId        int64  `protobuf:"varint,5,opt,name=userId,proto3" json:"userId"`
-	LivePeopleNum int64  `protobuf:"varint,6,opt,name=livePeopleNum,proto3" json:"livePeopleNum"`
-	Remark        string `protobuf:"bytes,7,opt,name=remark,proto3" json:"remark"`
+	HomestayId    int64  `protobuf:"varint,1,opt,name=homestayId,proto3" json:"homestayId,omitempty"`
+	IsFood        bool   `protobuf:"varint,2,opt,name=isFood,proto3" json:"isFood,omitempty"`
+	LiveStartTime int64  `protobuf:"varint,3,opt,name=liveStartTime,proto3" json:"liveStartTime,omitempty"`
+	LiveEndTime   int64  `protobuf:"varint,4,opt,name=liveEndTime,proto3" json:"liveEndTime,omitempty"`
+	UserId        int64  `protobuf:"varint,5,opt,name=userId,proto3" json:"userId,omitempty"`
+	LivePeopleNum int64  `protobuf:"varint,6,opt,name=livePeopleNum,proto3" json:"livePeopleNum,omitempty"`
+	Remark        string `protobuf:"bytes,7,opt,name=remark,proto3" json:"remark,omitempty"`
 }
 
 func (x *CreateHomestayOrderReq) Reset() {
@@ -375,7 +375,7 @@ type CreateHomestayOrderResp struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Sn string `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn"`
+	Sn string `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
 }
 
 func (x *CreateHomestayOrderResp) Reset() {
@@ -422,10 +422,10 @@ type UserHomestayOrderListReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	LastId      int64 `protobuf:"varint,1,opt,name=lastId,proto3" json:"lastId"`
-	PageSize    int64 `protobuf:"varint,2,opt,name=pageSize,proto3" json:"pageSize"`
-	UserId      int64 `protobuf:"varint,3,opt,name=userId,proto3" json:"userId"`
-	TraderState int64 `protobuf:"varint,4,opt,name=traderState,proto3" json:"traderState"`
+	LastId      int64 `protobuf:"varint,1,opt,name=lastId,proto3" json:"lastId,omitempty"`
+	PageSize    int64 `protobuf:"varint,2,opt,name=pageSize,proto3" json:"pageSize,omitempty"`
+	UserId      int64 `protobuf:"varint,3,opt,name=userId,proto3" json:"userId,omitempty"`
+	TraderState int64 `protobuf:"varint,4,opt,name=traderState,proto3" json:"traderState,omitempty"`
 }
 
 func (x *UserHomestayOrderListReq) Reset() {
@@ -493,7 +493,7 @@ type UserHomestayOrderListResp struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	List []*HomestayOrder `protobuf:"bytes,1,rep,name=list,proto3" json:"list"`
+	List []*HomestayOrder `protobuf:"bytes,1,rep,name=list,proto3" json:"list,omitempty"`
 }
 
 func (x *UserHomestayOrderListResp) Reset() {
@@ -540,8 +540,8 @@ type UpdateHomestayOrderTradeStateReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Sn         string `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn"`
-	TradeState int64  `protobuf:"varint,2,opt,name=tradeState,proto3" json:"tradeState"` //-1: 已取消 0:待支付 1:未使用 2:已使用  3:已过关闭
+	Sn         string `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
+	TradeState int64  `protobuf:"varint,2,opt,name=tradeState,proto3" json:"tradeState,omitempty"` //-1: 已取消 0:待支付 1:未使用 2:已使用  3:已过关闭
 }
 
 func (x *UpdateHomestayOrderTradeStateReq) Reset() {
@@ -595,14 +595,14 @@ type UpdateHomestayOrderTradeStateResp struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id              int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
-	UserId          int64  `protobuf:"varint,2,opt,name=userId,proto3" json:"userId"`
-	Sn              string `protobuf:"bytes,3,opt,name=sn,proto3" json:"sn"`
-	TradeCode       string `protobuf:"bytes,4,opt,name=tradeCode,proto3" json:"tradeCode"`
-	LiveStartDate   int64  `protobuf:"varint,5,opt,name=liveStartDate,proto3" json:"liveStartDate"`
-	LiveEndDate     int64  `protobuf:"varint,6,opt,name=liveEndDate,proto3" json:"liveEndDate"`
-	OrderTotalPrice int64  `protobuf:"varint,7,opt,name=orderTotalPrice,proto3" json:"orderTotalPrice"`
-	Title           string `protobuf:"bytes,8,opt,name=title,proto3" json:"title"`
+	Id              int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	UserId          int64  `protobuf:"varint,2,opt,name=userId,proto3" json:"userId,omitempty"`
+	Sn              string `protobuf:"bytes,3,opt,name=sn,proto3" json:"sn,omitempty"`
+	TradeCode       string `protobuf:"bytes,4,opt,name=tradeCode,proto3" json:"tradeCode,omitempty"`
+	LiveStartDate   int64  `protobuf:"varint,5,opt,name=liveStartDate,proto3" json:"liveStartDate,omitempty"`
+	LiveEndDate     int64  `protobuf:"varint,6,opt,name=liveEndDate,proto3" json:"liveEndDate,omitempty"`
+	OrderTotalPrice int64  `protobuf:"varint,7,opt,name=orderTotalPrice,proto3" json:"orderTotalPrice,omitempty"`
+	Title           string `protobuf:"bytes,8,opt,name=title,proto3" json:"title,omitempty"`
 }
 
 func (x *UpdateHomestayOrderTradeStateResp) Reset() {
@@ -698,7 +698,7 @@ type HomestayOrderDetailReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Sn string `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn"`
+	Sn string `protobuf:"bytes,1,opt,name=sn,proto3" json:"sn,omitempty"`
 }
 
 func (x *HomestayOrderDetailReq) Reset() {
@@ -745,7 +745,7 @@ type HomestayOrderDetailResp struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	HomestayOrder *HomestayOrder `protobuf:"bytes,1,opt,name=homestayOrder,proto3" json:"homestayOrder"`
+	HomestayOrder *HomestayOrder `protobuf:"bytes,1,opt,name=homestayOrder,proto3" json:"homestayOrder,omitempty"`
 }
 
 func (x *HomestayOrderDetailResp) Reset() {

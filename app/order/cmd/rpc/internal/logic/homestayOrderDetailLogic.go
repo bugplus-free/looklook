@@ -5,11 +5,11 @@ import (
 
 	"looklook/app/order/cmd/rpc/internal/svc"
 	"looklook/app/order/cmd/rpc/pb"
+	"looklook/app/order/model"
 
 	"github.com/jinzhu/copier"
 	"github.com/pkg/errors"
 	"github.com/zeromicro/go-zero/core/logx"
-	"github.com/zeromicro/go-zero/tools/goctl/model/sql/test/model"
 )
 
 type HomestayOrderDetailLogic struct {

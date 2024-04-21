@@ -5,12 +5,8 @@ import (
 
 	"looklook/app/travel/cmd/api/internal/svc"
 	"looklook/app/travel/cmd/api/internal/types"
-	"looklook/app/usercenter/cmd/rpc/usercenter"
 
-	"github.com/jinzhu/copier"
-	"github.com/pkg/errors"
 	"github.com/zeromicro/go-zero/core/logx"
-	"github.com/zeromicro/go-zero/tools/goctl/model/sql/test/model"
 )
 
 type HomestayBussinessDetailLogic struct {
@@ -19,7 +15,6 @@ type HomestayBussinessDetailLogic struct {
 	svcCtx *svc.ServiceContext
 }
 
-// 房东信息
 func NewHomestayBussinessDetailLogic(ctx context.Context, svcCtx *svc.ServiceContext) *HomestayBussinessDetailLogic {
 	return &HomestayBussinessDetailLogic{
 		Logger: logx.WithContext(ctx),
@@ -29,8 +24,7 @@ func NewHomestayBussinessDetailLogic(ctx context.Context, svcCtx *svc.ServiceCon
 }
 
 func (l *HomestayBussinessDetailLogic) HomestayBussinessDetail(req *types.HomestayBussinessDetailReq) (resp *types.HomestayBussinessDetailResp, err error) {
-	// todo: add your logic here and delete this line
-	homestayBusiness, err := l.svcCtx.HomestayBusinessModel.FindOne(l.ctx, req.Id)
+	homestayBusiness, err := l.svcCtx.HomestayBusinessModel.FindOne(l.ctx,req.Id)
 	if err != nil && err != model.ErrNotFound {
 		return nil, errors.Wrapf(xerr.NewErrCode(xerr.DB_ERROR), " HomestayBussinessDetail  FindOne db fail ,id  : %d , err : %v", req.Id, err)
 	}

@@ -3,15 +3,9 @@ package thirdPayment
 import (
 	"context"
 
-	"looklook/app/order/cmd/rpc/order"
 	"looklook/app/payment/cmd/api/internal/svc"
 	"looklook/app/payment/cmd/api/internal/types"
-	"looklook/app/usercenter/cmd/rpc/usercenter"
-	"looklook/common/ctxdata"
 
-	"github.com/pkg/errors"
-	"github.com/wechatpay-apiv3/wechatpay-go/core"
-	"github.com/wechatpay-apiv3/wechatpay-go/services/payments/jsapi"
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -21,7 +15,6 @@ type ThirdPaymentwxPayLogic struct {
 	svcCtx *svc.ServiceContext
 }
 
-// third payment：wechat pay
 func NewThirdPaymentwxPayLogic(ctx context.Context, svcCtx *svc.ServiceContext) *ThirdPaymentwxPayLogic {
 	return &ThirdPaymentwxPayLogic{
 		Logger: logx.WithContext(ctx),
@@ -31,7 +24,6 @@ func NewThirdPaymentwxPayLogic(ctx context.Context, svcCtx *svc.ServiceContext) 
 }
 
 func (l *ThirdPaymentwxPayLogic) ThirdPaymentwxPay(req *types.ThirdPaymentWxPayReq) (resp *types.ThirdPaymentWxPayResp, err error) {
-	// todo: add your logic here and delete this line
 	var totalPrice int64   // Total amount paid for current order(cent)
 	var description string // Current Payment Description.
 
@@ -148,3 +140,4 @@ func (l *ThirdPaymentwxPayLogic) getPayHomestayPriceDescription(orderSn string) 
 
 	return resp.HomestayOrder.OrderTotalPrice, description, nil
 }
+

@@ -6,9 +6,6 @@ import (
 	"looklook/app/travel/cmd/api/internal/svc"
 	"looklook/app/travel/cmd/api/internal/types"
 
-	"github.com/Masterminds/squirrel"
-	"github.com/jinzhu/copier"
-	"github.com/pkg/errors"
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -18,7 +15,6 @@ type BusinessListLogic struct {
 	svcCtx *svc.ServiceContext
 }
 
-// 房东所有民宿列表
 func NewBusinessListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *BusinessListLogic {
 	return &BusinessListLogic{
 		Logger: logx.WithContext(ctx),
@@ -27,8 +23,7 @@ func NewBusinessListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Busi
 	}
 }
 
-func (l *BusinessListLogic) BusinessList(req *types.BusinessListReq) (*types.BusinessListResp, error) {
-	// todo: add your logic here and delete this line
+func (l *BusinessListLogic) BusinessList(req *types.BusinessListReq) (resp *types.BusinessListResp, err error) {
 	whereBuilder := l.svcCtx.HomestayModel.SelectBuilder().Where(squirrel.Eq{"homestay_business_id": req.HomestayBusinessId})
 	list, err := l.svcCtx.HomestayModel.FindPageListByIdDESC(l.ctx, whereBuilder, req.LastId, req.PageSize)
 	if err != nil {

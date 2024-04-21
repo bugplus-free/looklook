@@ -25,20 +25,20 @@ type Homestay struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id                  int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
-	Title               string `protobuf:"bytes,2,opt,name=title,proto3" json:"title"`
-	SubTitle            string `protobuf:"bytes,3,opt,name=subTitle,proto3" json:"subTitle"`
-	Banner              string `protobuf:"bytes,4,opt,name=banner,proto3" json:"banner"`
-	Info                string `protobuf:"bytes,5,opt,name=info,proto3" json:"info"`
-	PeopleNum           int64  `protobuf:"varint,6,opt,name=peopleNum,proto3" json:"peopleNum"`                      //容纳人的数量
-	HomestayBusinessId  int64  `protobuf:"varint,7,opt,name=homestayBusinessId,proto3" json:"homestayBusinessId"`    //店铺id
-	UserId              int64  `protobuf:"varint,8,opt,name=userId,proto3" json:"userId"`                            //房东id
-	RowState            int64  `protobuf:"varint,9,opt,name=rowState,proto3" json:"rowState"`                        //0:下架 1:上架
-	RowType             int64  `protobuf:"varint,10,opt,name=rowType,proto3" json:"rowType"`                         //售卖类型0：按房间出售 1:按人次出售
-	FoodInfo            string `protobuf:"bytes,11,opt,name=foodInfo,proto3" json:"foodInfo"`                        //餐食标准
-	FoodPrice           int64  `protobuf:"varint,12,opt,name=foodPrice,proto3" json:"foodPrice"`                     //餐食价格(分)
-	HomestayPrice       int64  `protobuf:"varint,13,opt,name=homestayPrice,proto3" json:"homestayPrice"`             //民宿价格(分)
-	MarketHomestayPrice int64  `protobuf:"varint,14,opt,name=marketHomestayPrice,proto3" json:"marketHomestayPrice"` //民宿市场价格(分)
+	Id                  int64  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Title               string `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	SubTitle            string `protobuf:"bytes,3,opt,name=subTitle,proto3" json:"subTitle,omitempty"`
+	Banner              string `protobuf:"bytes,4,opt,name=banner,proto3" json:"banner,omitempty"`
+	Info                string `protobuf:"bytes,5,opt,name=info,proto3" json:"info,omitempty"`
+	PeopleNum           int64  `protobuf:"varint,6,opt,name=peopleNum,proto3" json:"peopleNum,omitempty"`                      //容纳人的数量
+	HomestayBusinessId  int64  `protobuf:"varint,7,opt,name=homestayBusinessId,proto3" json:"homestayBusinessId,omitempty"`    //店铺id
+	UserId              int64  `protobuf:"varint,8,opt,name=userId,proto3" json:"userId,omitempty"`                            //房东id
+	RowState            int64  `protobuf:"varint,9,opt,name=rowState,proto3" json:"rowState,omitempty"`                        //0:下架 1:上架
+	RowType             int64  `protobuf:"varint,10,opt,name=rowType,proto3" json:"rowType,omitempty"`                         //售卖类型0：按房间出售 1:按人次出售
+	FoodInfo            string `protobuf:"bytes,11,opt,name=foodInfo,proto3" json:"foodInfo,omitempty"`                        //餐食标准
+	FoodPrice           int64  `protobuf:"varint,12,opt,name=foodPrice,proto3" json:"foodPrice,omitempty"`                     //餐食价格(分)
+	HomestayPrice       int64  `protobuf:"varint,13,opt,name=homestayPrice,proto3" json:"homestayPrice,omitempty"`             //民宿价格(分)
+	MarketHomestayPrice int64  `protobuf:"varint,14,opt,name=marketHomestayPrice,proto3" json:"marketHomestayPrice,omitempty"` //民宿市场价格(分)
 }
 
 func (x *Homestay) Reset() {
@@ -176,7 +176,7 @@ type HomestayDetailReq struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id"`
+	Id int64 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
 }
 
 func (x *HomestayDetailReq) Reset() {
@@ -223,7 +223,7 @@ type HomestayDetailResp struct {
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
 
-	Homestay *Homestay `protobuf:"bytes,1,opt,name=homestay,proto3" json:"homestay"`
+	Homestay *Homestay `protobuf:"bytes,1,opt,name=homestay,proto3" json:"homestay,omitempty"`
 }
 
 func (x *HomestayDetailResp) Reset() {

@@ -5,9 +5,7 @@ import (
 
 	"looklook/app/usercenter/cmd/rpc/internal/svc"
 	"looklook/app/usercenter/cmd/rpc/pb"
-	"looklook/app/usercenter/cmd/rpc/usercenter"
 
-	"github.com/pkg/errors"
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -26,7 +24,6 @@ func NewLoginLogic(ctx context.Context, svcCtx *svc.ServiceContext) *LoginLogic 
 }
 
 func (l *LoginLogic) Login(in *pb.LoginReq) (*pb.LoginResp, error) {
-	// todo: add your logic here and delete this line
 	var userId int64
 	var err error
 	switch in.AuthType {
@@ -40,13 +37,14 @@ func (l *LoginLogic) Login(in *pb.LoginReq) (*pb.LoginResp, error) {
 	}
 
 	//2、Generate the token, so that the service doesn't call rpc internally
-	generateTokenLogic := NewGenerateTokenLogic(l.ctx, l.svcCtx)
-	tokenResp, err := generateTokenLogic.GenerateToken(&usercenter.GenerateTokenReq{
+	generateTokenLogic :=NewGenerateTokenLogic(l.ctx,l.svcCtx)
+	tokenResp,err:=generateTokenLogic.GenerateToken(&usercenter.GenerateTokenReq{
 		UserId: userId,
 	})
 	if err != nil {
 		return nil, errors.Wrapf(ErrGenerateTokenError, "GenerateToken userId : %d", userId)
 	}
+
 
 	return &usercenter.LoginResp{
 		AccessToken:  tokenResp.AccessToken,
@@ -57,7 +55,7 @@ func (l *LoginLogic) Login(in *pb.LoginReq) (*pb.LoginResp, error) {
 
 func (l *LoginLogic) loginByMobile(mobile, password string) (int64, error) {
 
-	user, err := l.svcCtx.UserModel.FindOneByMobile(l.ctx, mobile)
+	user, err := l.svcCtx.UserModel.FindOneByMobile(l.ctx,mobile)
 	if err != nil && err != model.ErrNotFound {
 		return 0, errors.Wrapf(xerr.NewErrCode(xerr.DB_ERROR), "根据手机号查询用户信息失败，mobile:%s,err:%v", mobile, err)
 	}

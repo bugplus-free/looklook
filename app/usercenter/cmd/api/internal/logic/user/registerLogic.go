@@ -5,10 +5,7 @@ import (
 
 	"looklook/app/usercenter/cmd/api/internal/svc"
 	"looklook/app/usercenter/cmd/api/internal/types"
-	"looklook/app/usercenter/cmd/rpc/usercenter"
 
-	"github.com/jinzhu/copier"
-	"github.com/pkg/errors"
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -18,7 +15,6 @@ type RegisterLogic struct {
 	svcCtx *svc.ServiceContext
 }
 
-// register
 func NewRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContext) *RegisterLogic {
 	return &RegisterLogic{
 		Logger: logx.WithContext(ctx),
@@ -27,9 +23,8 @@ func NewRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Register
 	}
 }
 
-func (l *RegisterLogic) Register(req *types.RegisterReq) (*types.RegisterResp, error) {
-	// todo: add your logic here and delete this line
-	registerResp, err := l.svcCtx.UsercenterRpc.Register(l.ctx, &usercenter.RegisterReq{
+func (l *RegisterLogic) Register(req *types.RegisterReq) (resp *types.RegisterResp, err error) {
+		registerResp, err := l.svcCtx.UsercenterRpc.Register(l.ctx, &usercenter.RegisterReq{
 		Mobile:   req.Mobile,
 		Password: req.Password,
 		AuthKey:  req.Mobile,

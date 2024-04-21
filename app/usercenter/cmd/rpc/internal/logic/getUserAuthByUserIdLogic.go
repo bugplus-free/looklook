@@ -5,12 +5,8 @@ import (
 
 	"looklook/app/usercenter/cmd/rpc/internal/svc"
 	"looklook/app/usercenter/cmd/rpc/pb"
-	"looklook/app/usercenter/cmd/rpc/usercenter"
 
-	"github.com/jinzhu/copier"
-	"github.com/pkg/errors"
 	"github.com/zeromicro/go-zero/core/logx"
-	"github.com/zeromicro/go-zero/tools/goctl/model/sql/test/model"
 )
 
 type GetUserAuthByUserIdLogic struct {
@@ -28,9 +24,7 @@ func NewGetUserAuthByUserIdLogic(ctx context.Context, svcCtx *svc.ServiceContext
 }
 
 func (l *GetUserAuthByUserIdLogic) GetUserAuthByUserId(in *pb.GetUserAuthByUserIdReq) (*pb.GetUserAuthyUserIdResp, error) {
-	// todo: add your logic here and delete this line
-
-	userAuth, err := l.svcCtx.UserAuthModel.FindOneByUserIdAuthType(l.ctx, in.UserId, in.AuthType)
+	userAuth, err := l.svcCtx.UserAuthModel.FindOneByUserIdAuthType(l.ctx,in.UserId, in.AuthType)
 	if err != nil && err != model.ErrNotFound {
 		return nil, errors.Wrapf(xerr.NewErrMsg("get user auth  fail"), "err : %v , in : %+v", err, in)
 	}
