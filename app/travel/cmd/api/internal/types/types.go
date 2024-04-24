@@ -114,6 +114,7 @@ type HomestayDetailResp struct {
 
 type HomestayListReq struct {
 	LastId   int64  `json:"lastId"`
+	Page int64 `json:"page"`
 	PageSize int64  `json:"pageSize"`
 	RowType  string `json:"rowType"` //preferredHomestay:优选民宿
 }

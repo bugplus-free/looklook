@@ -5,10 +5,11 @@ import (
 
 	"looklook/common/result"
 
-	"github.com/zeromicro/go-zero/rest/httpx"
 	"looklook/app/usercenter/cmd/api/internal/logic/user"
 	"looklook/app/usercenter/cmd/api/internal/svc"
 	"looklook/app/usercenter/cmd/api/internal/types"
+
+	"github.com/zeromicro/go-zero/rest/httpx"
 )
 
 func DetailHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {

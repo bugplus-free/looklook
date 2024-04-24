@@ -6,8 +6,11 @@ import (
 	"looklook/app/order/cmd/api/internal/svc"
 	"looklook/app/order/cmd/api/internal/types"
 	"looklook/app/order/cmd/rpc/order"
+	"looklook/app/order/model"
 	"looklook/app/payment/cmd/rpc/payment"
 	"looklook/common/ctxdata"
+	"looklook/common/tool"
+	"looklook/common/xerr"
 
 	"github.com/jinzhu/copier"
 	"github.com/pkg/errors"
@@ -28,7 +31,7 @@ func NewUserHomestayOrderDetailLogic(ctx context.Context, svcCtx *svc.ServiceCon
 	}
 }
 
-func (l *UserHomestayOrderDetailLogic) UserHomestayOrderDetail(req *types.UserHomestayOrderDetailReq) (resp *types.UserHomestayOrderDetailResp, err error) {
+func (l *UserHomestayOrderDetailLogic) UserHomestayOrderDetail(req *types.UserHomestayOrderDetailReq) (*types.UserHomestayOrderDetailResp, error) {
 	// todo: add your logic here and delete this line
 
 	userId := ctxdata.GetUidFromCtx(l.ctx)

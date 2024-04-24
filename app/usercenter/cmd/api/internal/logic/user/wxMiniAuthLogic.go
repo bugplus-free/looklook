@@ -2,13 +2,21 @@ package user
 
 import (
 	"context"
+	"fmt"
 
 	"looklook/app/usercenter/cmd/api/internal/svc"
 	"looklook/app/usercenter/cmd/api/internal/types"
+	"looklook/app/usercenter/cmd/rpc/usercenter"
+	"looklook/common/xerr"
+	usercenterModel "looklook/app/usercenter/model"
 
+	"github.com/pkg/errors"
+	wechat "github.com/silenceper/wechat/v2"
+	miniConfig "github.com/silenceper/wechat/v2/miniprogram/config"
+	"github.com/silenceper/wechat/v2/cache"
 	"github.com/zeromicro/go-zero/core/logx"
 )
-
+var ErrWxMiniAuthFailError = xerr.NewErrMsg("wechat mini auth fail")
 type WxMiniAuthLogic struct {
 	logx.Logger
 	ctx    context.Context

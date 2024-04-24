@@ -5,7 +5,10 @@ import (
 
 	"looklook/app/usercenter/cmd/api/internal/svc"
 	"looklook/app/usercenter/cmd/api/internal/types"
+	"looklook/app/usercenter/cmd/rpc/usercenter"
+	"looklook/common/ctxdata"
 
+	"github.com/jinzhu/copier"
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -24,7 +27,7 @@ func NewDetailLogic(ctx context.Context, svcCtx *svc.ServiceContext) *DetailLogi
 }
 
 func (l *DetailLogic) Detail(req *types.UserInfoReq) (resp *types.UserInfoResp, err error) {
-		userId := ctxdata.GetUidFromCtx(l.ctx)
+	userId := ctxdata.GetUidFromCtx(l.ctx)
 
 	userInfoResp, err := l.svcCtx.UsercenterRpc.GetUserInfo(l.ctx, &usercenter.GetUserInfoReq{
 		Id: userId,

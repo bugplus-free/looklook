@@ -5,8 +5,15 @@ import (
 
 	"looklook/app/travel/cmd/api/internal/svc"
 	"looklook/app/travel/cmd/api/internal/types"
+	"looklook/app/travel/model"
+	"looklook/app/usercenter/cmd/rpc/usercenter"
+	"looklook/common/xerr"
 
+	"github.com/Masterminds/squirrel"
+	"github.com/jinzhu/copier"
+	"github.com/pkg/errors"
 	"github.com/zeromicro/go-zero/core/logx"
+	"github.com/zeromicro/go-zero/core/mr"
 )
 
 type GoodBossLogic struct {
@@ -23,7 +30,7 @@ func NewGoodBossLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GoodBoss
 	}
 }
 
-func (l *GoodBossLogic) GoodBoss(req *types.GoodBossReq) (resp *types.GoodBossResp, err error) {
+func (l *GoodBossLogic) GoodBoss(req *types.GoodBossReq) (*types.GoodBossResp, error) {
 	whereBuilder := l.svcCtx.HomestayActivityModel.SelectBuilder().Where(squirrel.Eq{
 		"row_type":   model.HomestayActivityGoodBusiType,
 		"row_status": model.HomestayActivityUpStatus,

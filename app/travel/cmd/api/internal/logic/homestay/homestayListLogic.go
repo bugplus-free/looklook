@@ -5,8 +5,15 @@ import (
 
 	"looklook/app/travel/cmd/api/internal/svc"
 	"looklook/app/travel/cmd/api/internal/types"
+	"looklook/app/travel/model"
+	"looklook/common/tool"
+	"looklook/common/xerr"
 
+	"github.com/Masterminds/squirrel"
+	"github.com/jinzhu/copier"
+	"github.com/pkg/errors"
 	"github.com/zeromicro/go-zero/core/logx"
+	"github.com/zeromicro/go-zero/core/mr"
 )
 
 type HomestayListLogic struct {
@@ -23,7 +30,7 @@ func NewHomestayListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Home
 	}
 }
 
-func (l *HomestayListLogic) HomestayList(req *types.HomestayListReq) (resp *types.HomestayListResp, err error) {
+func (l *HomestayListLogic) HomestayList(req *types.HomestayListReq) (*types.HomestayListResp, error) {
 	whereBuilder := l.svcCtx.HomestayActivityModel.SelectBuilder().Where(squirrel.Eq{
 		"row_type":   model.HomestayActivityPreferredType,
 		"row_status": model.HomestayActivityUpStatus,

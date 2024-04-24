@@ -3,12 +3,22 @@ package thirdPayment
 import (
 	"context"
 
+	"looklook/app/order/cmd/rpc/order"
+	"looklook/app/payment/model"
 	"looklook/app/payment/cmd/api/internal/svc"
 	"looklook/app/payment/cmd/api/internal/types"
+	"looklook/app/payment/cmd/rpc/payment"
+	"looklook/app/usercenter/cmd/rpc/usercenter"
+	usercenterModel "looklook/app/usercenter/model"
+	"looklook/common/ctxdata"
+	"looklook/common/xerr"
 
+	"github.com/pkg/errors"
+	"github.com/wechatpay-apiv3/wechatpay-go/core"
+	"github.com/wechatpay-apiv3/wechatpay-go/services/payments/jsapi"
 	"github.com/zeromicro/go-zero/core/logx"
 )
-
+var ErrWxPayError = xerr.NewErrMsg("wechat pay fail")
 type ThirdPaymentwxPayLogic struct {
 	logx.Logger
 	ctx    context.Context
@@ -140,4 +150,3 @@ func (l *ThirdPaymentwxPayLogic) getPayHomestayPriceDescription(orderSn string) 
 
 	return resp.HomestayOrder.OrderTotalPrice, description, nil
 }
-
