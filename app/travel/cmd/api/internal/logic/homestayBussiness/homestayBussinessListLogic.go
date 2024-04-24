@@ -5,7 +5,10 @@ import (
 
 	"looklook/app/travel/cmd/api/internal/svc"
 	"looklook/app/travel/cmd/api/internal/types"
+	"looklook/common/xerr"
 
+	"github.com/jinzhu/copier"
+	"github.com/pkg/errors"
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -23,7 +26,7 @@ func NewHomestayBussinessListLogic(ctx context.Context, svcCtx *svc.ServiceConte
 	}
 }
 
-func (l *HomestayBussinessListLogic) HomestayBussinessList(req *types.HomestayBussinessListReq) (resp *types.HomestayBussinessListResp, err error) {
+func (l *HomestayBussinessListLogic) HomestayBussinessList(req *types.HomestayBussinessListReq) (*types.HomestayBussinessListResp, error) {
 	whereBuilder := l.svcCtx.HomestayBusinessModel.SelectBuilder()
 	list, err := l.svcCtx.HomestayBusinessModel.FindPageListByIdDESC(l.ctx, whereBuilder, req.LastId, req.PageSize)
 	if err != nil {

@@ -2,12 +2,23 @@ package thirdPayment
 
 import (
 	"context"
+	"net/http"
 
 	"looklook/app/payment/cmd/api/internal/svc"
 	"looklook/app/payment/cmd/api/internal/types"
+	"looklook/app/payment/cmd/rpc/payment"
+	"looklook/app/payment/model"
+	"looklook/common/xerr"
 
+	"github.com/pkg/errors"
+	"github.com/wechatpay-apiv3/wechatpay-go/core/auth/verifiers"
+	"github.com/wechatpay-apiv3/wechatpay-go/core/downloader"
+	"github.com/wechatpay-apiv3/wechatpay-go/core/notify"
+	"github.com/wechatpay-apiv3/wechatpay-go/services/payments"
 	"github.com/zeromicro/go-zero/core/logx"
 )
+
+var ErrWxPayCallbackError = xerr.NewErrMsg("wechat pay callback fail")
 
 type ThirdPaymentWxPayCallbackLogic struct {
 	logx.Logger
@@ -23,7 +34,7 @@ func NewThirdPaymentWxPayCallbackLogic(ctx context.Context, svcCtx *svc.ServiceC
 	}
 }
 
-func (l *ThirdPaymentWxPayCallbackLogic) ThirdPaymentWxPayCallback(req *types.ThirdPaymentWxPayCallbackReq) (resp *types.ThirdPaymentWxPayCallbackResp, err error) {
+func (l *ThirdPaymentWxPayCallbackLogic) ThirdPaymentWxPayCallback(rw http.ResponseWriter, req *http.Request) (*types.ThirdPaymentWxPayCallbackResp, error) {
 	//Retrieve the local merchant certificate private key.
 	_, err := svc.NewWxPayClientV3(l.svcCtx.Config)
 	if err != nil {
@@ -46,37 +57,13 @@ func (l *ThirdPaymentWxPayCallbackLogic) ThirdPaymentWxPayCallback(req *types.Th
 		returnCode = "FAIL"
 	}
 
-	return &types.ThirdPaymentWxPayCallbackResp{
-		ReturnCode: returnCode,
-	}, err	//Retrieve the local merchant certificate private key.
-	_, err := svc.NewWxPayClientV3(l.svcCtx.Config)
-	if err != nil {
-		return nil, err
-	}
-
-	// Get platform certificate accessor
-	certVisitor := downloader.MgrInstance().GetCertificateVisitor(l.svcCtx.Config.WxPayConf.MchId)
-	handler := notify.NewNotifyHandler(l.svcCtx.Config.WxPayConf.APIv3Key, verifiers.NewSHA256WithRSAVerifier(certVisitor))
-	//Verifying signatures, parsing data
-	transaction := new(payments.Transaction)
-	_, err = handler.ParseNotifyRequest(context.Background(), req, transaction)
-	if err != nil {
-		return nil, errors.Wrapf(ErrWxPayCallbackError, "Failed to parse data ,err:%v", err)
-	}
-
-	returnCode := "SUCCESS"
-	err = l.verifyAndUpdateState(transaction)
-	if err != nil {
-		returnCode = "FAIL"
-	}
 
 	return &types.ThirdPaymentWxPayCallbackResp{
 		ReturnCode: returnCode,
 	}, err
 }
 
-
-//Verify and update relevant flow data
+// Verify and update relevant flow data
 func (l *ThirdPaymentWxPayCallbackLogic) verifyAndUpdateState(notifyTrasaction *payments.Transaction) error {
 
 	paymentResp, err := l.svcCtx.PaymentRpc.GetPaymentBySn(l.ctx, &payment.GetPaymentBySnReq{

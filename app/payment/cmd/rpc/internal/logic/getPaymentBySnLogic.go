@@ -5,6 +5,7 @@ import (
 
 	"looklook/app/payment/cmd/rpc/internal/svc"
 	"looklook/app/payment/cmd/rpc/pb"
+	"looklook/common/xerr"
 
 	"github.com/jinzhu/copier"
 	"github.com/pkg/errors"

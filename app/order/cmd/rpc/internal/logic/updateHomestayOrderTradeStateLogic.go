@@ -6,6 +6,8 @@ import (
 
 	"looklook/app/order/cmd/rpc/internal/svc"
 	"looklook/app/order/cmd/rpc/pb"
+	"looklook/app/order/model"
+	"looklook/common/xerr"
 
 	"github.com/hibiken/asynq"
 	"github.com/pkg/errors"

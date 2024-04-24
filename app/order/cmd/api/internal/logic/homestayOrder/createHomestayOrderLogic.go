@@ -8,6 +8,7 @@ import (
 	"looklook/app/order/cmd/rpc/order"
 	"looklook/app/travel/cmd/rpc/pb"
 	"looklook/common/ctxdata"
+	"looklook/common/xerr"
 
 	"github.com/pkg/errors"
 	"github.com/zeromicro/go-zero/core/logx"

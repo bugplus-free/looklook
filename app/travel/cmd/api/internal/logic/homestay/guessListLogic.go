@@ -5,7 +5,11 @@ import (
 
 	"looklook/app/travel/cmd/api/internal/svc"
 	"looklook/app/travel/cmd/api/internal/types"
+	"looklook/common/tool"
+	"looklook/common/xerr"
 
+	"github.com/jinzhu/copier"
+	"github.com/pkg/errors"
 	"github.com/zeromicro/go-zero/core/logx"
 )
 
@@ -23,7 +27,7 @@ func NewGuessListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *GuessLi
 	}
 }
 
-func (l *GuessListLogic) GuessList(req *types.GuessListReq) (resp *types.GuessListResp, err error) {
+func (l *GuessListLogic) GuessList(req *types.GuessListReq) (*types.GuessListResp,error) {
 	var resp []types.Homestay
 
 	list, err := l.svcCtx.HomestayModel.FindPageListByIdDESC(l.ctx, l.svcCtx.HomestayModel.SelectBuilder(), 0, 5)

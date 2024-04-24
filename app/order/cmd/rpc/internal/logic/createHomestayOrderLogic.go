@@ -8,7 +8,11 @@ import (
 
 	"looklook/app/order/cmd/rpc/internal/svc"
 	"looklook/app/order/cmd/rpc/pb"
+	"looklook/app/order/model"
 	"looklook/app/travel/cmd/rpc/travel"
+	"looklook/common/tool"
+	"looklook/common/uniqueid"
+	"looklook/common/xerr"
 
 	"github.com/hibiken/asynq"
 	"github.com/pkg/errors"

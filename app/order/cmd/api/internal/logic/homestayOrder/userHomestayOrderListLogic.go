@@ -7,6 +7,8 @@ import (
 	"looklook/app/order/cmd/api/internal/types"
 	"looklook/app/order/cmd/rpc/order"
 	"looklook/common/ctxdata"
+	"looklook/common/tool"
+	"looklook/common/xerr"
 
 	"github.com/jinzhu/copier"
 	"github.com/pkg/errors"
@@ -27,7 +29,7 @@ func NewUserHomestayOrderListLogic(ctx context.Context, svcCtx *svc.ServiceConte
 	}
 }
 
-func (l *UserHomestayOrderListLogic) UserHomestayOrderList(req *types.UserHomestayOrderListReq) (resp *types.UserHomestayOrderListResp, err error) {
+func (l *UserHomestayOrderListLogic) UserHomestayOrderList(req *types.UserHomestayOrderListReq) (*types.UserHomestayOrderListResp, error) {
 	// todo: add your logic here and delete this line
 	userId := ctxdata.GetUidFromCtx(l.ctx) //get login user id
 
